@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<!-- This is the placeholder for the views -->
+		<div data-ng-view=""></div>
+	</div>
+
+
+	<script src="node_modules/angular/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.js"></script>
+
+	<script>
+
+	var myApp = angular.module('myApp', ['ngRoute']);
+
+		myApp.config(function($routeProvider){
+			$routeProvider
+			.when('/',
+				{
+					controller: 'simpleController',
+					templateUrl: 'partials/view-a.html'
+				})
+			.when('/view-b',
+				{
+					controller: 'simpleController',
+					templateUrl: 'partials/view-b.html'
+				})
+			.otherwise({ redirectTo: '/' })
+		});
+
+		myApp.controller('simpleController', ['$scope', function($scope) {
+			$scope.customers=[
+				{name: 'Jared', city: 'New Orleans'}, 
+				{name: 'Bob', city: 'New York'}, 
+				{name: 'Patricia', city: 'Arizona'}
+				];
+
+			$scope.addCustomer = function()	{
+				$scope.customers.push({name: $scope.newCustomer.name, city: $scope.newCustomer.city});
+			};
+		}]);
+
+	</script>
+</body>
+</html>

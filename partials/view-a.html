@@ -1,0 +1,12 @@
+	<div class="container" data-ng-controller="simpleController">
+		Name: <input type="text" ng-model="filter.name"> {{ name }}
+		<ul>
+			<li data-ng-repeat="customer in customers | filter:filter.name | orderBy:'city' ">{{ customer.name | uppercase }}: {{ customer.city | lowercase }}</li>
+		</ul>
+		<br>
+		Customer Name: <input type="text" ng-model="newCustomer.name"> 
+		Customer City: <input type="text" data-ng-model="newCustomer.city">
+		<button data-ng-click="addCustomer()"></button>
+		<br>
+		<a href="#/view-b">View B</a>
+	</div>
